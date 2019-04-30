@@ -133,7 +133,7 @@ int y =0;
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 800));
 
-        img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondos/f1jpg.jpg"))); // NOI18N
+        img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondos/f4.jpg"))); // NOI18N
         img.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 imgMouseDragged(evt);
@@ -203,7 +203,7 @@ int y =0;
         });
         jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(449, 10, 50, 40));
 
-        img2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondos/f1jpg.jpg"))); // NOI18N
+        img2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondos/f4.jpg"))); // NOI18N
         img2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 img2MouseDragged(evt);
