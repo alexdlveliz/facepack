@@ -33,7 +33,7 @@ int y =0;
         this.setLocationRelativeTo(null);  //centramos el frame
         try
         {
-            BufferedImage bim = ImageIO.read(new File(System.getProperty("user.dir") + "\\src\\fondos\\f4.jpg")); //creo un bufferimage con una imagen para el fondo
+            BufferedImage bim = ImageIO.read(new File(System.getProperty("user.dir") + "\\src\\fondos\\f8.jpg")); //creo un bufferimage con una imagen para el fondo
             BufferedImage nbim = new BufferedImage (1001,1001, BufferedImage.TYPE_4BYTE_ABGR_PRE); //creo otro bufferimage y le doy medidas, x, y y le doy el efecto de color que quiero
             Graphics2D createGraphics = nbim.createGraphics(); // creo una grafica a partir de la imagen
             createGraphics.drawImage(bim, null, 0, 0); //la dibujo
@@ -48,7 +48,7 @@ int y =0;
         {
             e.printStackTrace();
         }
-    }
+      }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -60,6 +60,7 @@ int y =0;
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
         rSFotoCircle1 = new rojerusan.RSFotoCircle();
         btnalex = new rojerusan.RSMaterialButtonRectangle();
         rSFotoCircle2 = new rojerusan.RSFotoCircle();
@@ -94,75 +95,81 @@ int y =0;
         jPanel1.setOpaque(false);
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        rSFotoCircle1.setColorBorde(new java.awt.Color(255, 255, 255));
-        rSFotoCircle1.setColorButtonOptions(new java.awt.Color(255, 255, 255));
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel4.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("_______________");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 220, 40));
+
+        rSFotoCircle1.setColorBorde(new java.awt.Color(153, 0, 153));
+        rSFotoCircle1.setColorButtonOptions(new java.awt.Color(153, 0, 153));
         rSFotoCircle1.setImagenDefault(new javax.swing.ImageIcon(getClass().getResource("/fondos/alex.jpg"))); // NOI18N
-        jPanel1.add(rSFotoCircle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 85, 60, 60));
+        jPanel1.add(rSFotoCircle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 203, 60, 60));
 
         btnalex.setBackground(new java.awt.Color(255, 255, 255));
-        btnalex.setForeground(new java.awt.Color(0, 102, 204));
+        btnalex.setForeground(new java.awt.Color(153, 0, 153));
         btnalex.setText("Alex de León");
         btnalex.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnalexMouseClicked(evt);
             }
         });
-        jPanel1.add(btnalex, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 330, -1));
+        jPanel1.add(btnalex, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 330, -1));
 
         rSFotoCircle2.setColorBorde(new java.awt.Color(255, 255, 255));
         rSFotoCircle2.setColorButtonOptions(new java.awt.Color(255, 255, 255));
         rSFotoCircle2.setImagenDefault(new javax.swing.ImageIcon(getClass().getResource("/fondos/nahomi.jpg"))); // NOI18N
-        jPanel1.add(rSFotoCircle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 165, 60, 60));
+        jPanel1.add(rSFotoCircle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 45, 60, 60));
 
         btnnahomi.setBackground(new java.awt.Color(255, 255, 255));
-        btnnahomi.setForeground(new java.awt.Color(0, 102, 204));
+        btnnahomi.setForeground(new java.awt.Color(153, 0, 153));
         btnnahomi.setText("Nahomi Torres");
         btnnahomi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnnahomiMouseClicked(evt);
             }
         });
-        jPanel1.add(btnnahomi, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 330, -1));
+        jPanel1.add(btnnahomi, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 330, -1));
 
-        rSFotoCircle3.setColorBorde(new java.awt.Color(255, 255, 255));
-        rSFotoCircle3.setColorButtonOptions(new java.awt.Color(255, 255, 255));
+        rSFotoCircle3.setColorBorde(new java.awt.Color(153, 0, 153));
+        rSFotoCircle3.setColorButtonOptions(new java.awt.Color(153, 0, 153));
         rSFotoCircle3.setImagenDefault(new javax.swing.ImageIcon(getClass().getResource("/fondos/hector.jpg"))); // NOI18N
-        jPanel1.add(rSFotoCircle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 245, 60, 60));
+        jPanel1.add(rSFotoCircle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 283, 60, 60));
 
         btnhector.setBackground(new java.awt.Color(255, 255, 255));
-        btnhector.setForeground(new java.awt.Color(0, 102, 204));
+        btnhector.setForeground(new java.awt.Color(153, 0, 153));
         btnhector.setText("Hector Tello");
         btnhector.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnhectorMouseClicked(evt);
             }
         });
-        jPanel1.add(btnhector, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 330, -1));
+        jPanel1.add(btnhector, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 330, -1));
 
-        rSFotoCircle4.setColorBorde(new java.awt.Color(255, 255, 255));
-        rSFotoCircle4.setColorButtonOptions(new java.awt.Color(255, 255, 255));
+        rSFotoCircle4.setColorBorde(new java.awt.Color(153, 0, 153));
+        rSFotoCircle4.setColorButtonOptions(new java.awt.Color(153, 0, 153));
         rSFotoCircle4.setImagenDefault(new javax.swing.ImageIcon(getClass().getResource("/fondos/mynor.jpg"))); // NOI18N
-        jPanel1.add(rSFotoCircle4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 325, 60, 60));
+        jPanel1.add(rSFotoCircle4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 363, 60, 60));
 
         btnmynor.setBackground(new java.awt.Color(255, 255, 255));
-        btnmynor.setForeground(new java.awt.Color(0, 102, 204));
+        btnmynor.setForeground(new java.awt.Color(153, 0, 153));
         btnmynor.setText("Mynor Alvarez");
         btnmynor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnmynorMouseClicked(evt);
             }
         });
-        jPanel1.add(btnmynor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 330, -1));
+        jPanel1.add(btnmynor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 330, -1));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("CONTACTOS");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 220, 40));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 220, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 800));
 
-        img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondos/f4.jpg"))); // NOI18N
+        img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondos/f8.jpg"))); // NOI18N
         img.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 imgMouseDragged(evt);
@@ -178,8 +185,7 @@ int y =0;
         jPanel2.setOpaque(false);
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnenviar.setBackground(new java.awt.Color(153, 255, 255));
-        btnenviar.setForeground(new java.awt.Color(0, 0, 102));
+        btnenviar.setBackground(new java.awt.Color(153, 0, 153));
         btnenviar.setText("Enviar");
         jPanel2.add(btnenviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 690, -1, -1));
 
@@ -189,7 +195,6 @@ int y =0;
         txtchat.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         txtchat.setRows(5);
         txtchat.setBorder(null);
-        txtchat.setEnabled(false);
         jScrollPane1.setViewportView(txtchat);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 460, 360));
@@ -249,7 +254,7 @@ int y =0;
         jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(449, 10, 50, 40));
 
         btnip.setBackground(new java.awt.Color(255, 255, 255));
-        btnip.setForeground(new java.awt.Color(0, 102, 204));
+        btnip.setForeground(new java.awt.Color(153, 0, 153));
         jPanel2.add(btnip, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 210, 50));
 
         fotonick.setColorBorde(new java.awt.Color(255, 255, 255));
@@ -258,10 +263,10 @@ int y =0;
         jPanel2.add(fotonick, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 75, 40, 40));
 
         btnnick.setBackground(new java.awt.Color(255, 255, 255));
-        btnnick.setForeground(new java.awt.Color(0, 102, 204));
+        btnnick.setForeground(new java.awt.Color(153, 0, 153));
         jPanel2.add(btnnick, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 210, 50));
 
-        img2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondos/f4.jpg"))); // NOI18N
+        img2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondos/f8.jpg"))); // NOI18N
         img2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 img2MouseDragged(evt);
@@ -380,6 +385,7 @@ int y =0;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
