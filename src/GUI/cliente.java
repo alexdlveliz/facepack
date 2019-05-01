@@ -7,10 +7,13 @@ package GUI;
 
 import com.sun.awt.AWTUtilities;
 import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.awt.image.RescaleOp;
 import java.io.File;
 import javax.imageio.ImageIO;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 /**
@@ -20,6 +23,7 @@ import javax.swing.ImageIcon;
 public class cliente extends javax.swing.JFrame {
 int x =0;
 int y =0;
+//Image iconoalex = Toolkit.getDefaultToolkit().getImage(getClass().getResource("\\src\\fondos\\alex.jpg"));
     /**
      * Creates new form cliente
      */
@@ -57,13 +61,13 @@ int y =0;
 
         jPanel1 = new javax.swing.JPanel();
         rSFotoCircle1 = new rojerusan.RSFotoCircle();
-        rSMaterialButtonRectangle1 = new rojerusan.RSMaterialButtonRectangle();
+        btnalex = new rojerusan.RSMaterialButtonRectangle();
         rSFotoCircle2 = new rojerusan.RSFotoCircle();
-        rSMaterialButtonRectangle2 = new rojerusan.RSMaterialButtonRectangle();
+        btnnahomi = new rojerusan.RSMaterialButtonRectangle();
         rSFotoCircle3 = new rojerusan.RSFotoCircle();
-        rSMaterialButtonRectangle5 = new rojerusan.RSMaterialButtonRectangle();
+        btnhector = new rojerusan.RSMaterialButtonRectangle();
         rSFotoCircle4 = new rojerusan.RSFotoCircle();
-        rSMaterialButtonRectangle6 = new rojerusan.RSMaterialButtonRectangle();
+        btnmynor = new rojerusan.RSMaterialButtonRectangle();
         jLabel1 = new javax.swing.JLabel();
         img = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -72,10 +76,15 @@ int y =0;
         txtchat = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtmensaje = new javax.swing.JTextArea();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         rSMaterialButtonRectangle3 = new rojerusan.RSMaterialButtonRectangle();
         rSMaterialButtonRectangle4 = new rojerusan.RSMaterialButtonRectangle();
         btncerrar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        btnip = new rojerusan.RSMaterialButtonRectangle();
+        fotonick = new rojerusan.RSFotoCircle();
+        btnnick = new rojerusan.RSMaterialButtonRectangle();
         img2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -90,40 +99,60 @@ int y =0;
         rSFotoCircle1.setImagenDefault(new javax.swing.ImageIcon(getClass().getResource("/fondos/alex.jpg"))); // NOI18N
         jPanel1.add(rSFotoCircle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 85, 60, 60));
 
-        rSMaterialButtonRectangle1.setBackground(new java.awt.Color(255, 255, 255));
-        rSMaterialButtonRectangle1.setForeground(new java.awt.Color(0, 102, 204));
-        rSMaterialButtonRectangle1.setText("Alex de León");
-        jPanel1.add(rSMaterialButtonRectangle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 330, -1));
+        btnalex.setBackground(new java.awt.Color(255, 255, 255));
+        btnalex.setForeground(new java.awt.Color(0, 102, 204));
+        btnalex.setText("Alex de León");
+        btnalex.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnalexMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnalex, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 330, -1));
 
         rSFotoCircle2.setColorBorde(new java.awt.Color(255, 255, 255));
         rSFotoCircle2.setColorButtonOptions(new java.awt.Color(255, 255, 255));
         rSFotoCircle2.setImagenDefault(new javax.swing.ImageIcon(getClass().getResource("/fondos/nahomi.jpg"))); // NOI18N
         jPanel1.add(rSFotoCircle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 165, 60, 60));
 
-        rSMaterialButtonRectangle2.setBackground(new java.awt.Color(255, 255, 255));
-        rSMaterialButtonRectangle2.setForeground(new java.awt.Color(0, 102, 204));
-        rSMaterialButtonRectangle2.setText("Nahomi Torres");
-        jPanel1.add(rSMaterialButtonRectangle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 330, -1));
+        btnnahomi.setBackground(new java.awt.Color(255, 255, 255));
+        btnnahomi.setForeground(new java.awt.Color(0, 102, 204));
+        btnnahomi.setText("Nahomi Torres");
+        btnnahomi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnnahomiMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnnahomi, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 330, -1));
 
         rSFotoCircle3.setColorBorde(new java.awt.Color(255, 255, 255));
         rSFotoCircle3.setColorButtonOptions(new java.awt.Color(255, 255, 255));
-        rSFotoCircle3.setImagenDefault(null);
+        rSFotoCircle3.setImagenDefault(new javax.swing.ImageIcon(getClass().getResource("/fondos/hector.jpg"))); // NOI18N
         jPanel1.add(rSFotoCircle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 245, 60, 60));
 
-        rSMaterialButtonRectangle5.setBackground(new java.awt.Color(255, 255, 255));
-        rSMaterialButtonRectangle5.setForeground(new java.awt.Color(0, 102, 204));
-        rSMaterialButtonRectangle5.setText("Hector Tello");
-        jPanel1.add(rSMaterialButtonRectangle5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 330, -1));
+        btnhector.setBackground(new java.awt.Color(255, 255, 255));
+        btnhector.setForeground(new java.awt.Color(0, 102, 204));
+        btnhector.setText("Hector Tello");
+        btnhector.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnhectorMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnhector, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 330, -1));
 
         rSFotoCircle4.setColorBorde(new java.awt.Color(255, 255, 255));
         rSFotoCircle4.setColorButtonOptions(new java.awt.Color(255, 255, 255));
-        rSFotoCircle4.setImagenDefault(null);
+        rSFotoCircle4.setImagenDefault(new javax.swing.ImageIcon(getClass().getResource("/fondos/mynor.jpg"))); // NOI18N
         jPanel1.add(rSFotoCircle4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 325, 60, 60));
 
-        rSMaterialButtonRectangle6.setBackground(new java.awt.Color(255, 255, 255));
-        rSMaterialButtonRectangle6.setForeground(new java.awt.Color(0, 102, 204));
-        rSMaterialButtonRectangle6.setText("Mynor Alvarez");
-        jPanel1.add(rSMaterialButtonRectangle6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 330, -1));
+        btnmynor.setBackground(new java.awt.Color(255, 255, 255));
+        btnmynor.setForeground(new java.awt.Color(0, 102, 204));
+        btnmynor.setText("Mynor Alvarez");
+        btnmynor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnmynorMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnmynor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 330, -1));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
@@ -150,6 +179,7 @@ int y =0;
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnenviar.setBackground(new java.awt.Color(153, 255, 255));
+        btnenviar.setForeground(new java.awt.Color(0, 0, 102));
         btnenviar.setText("Enviar");
         jPanel2.add(btnenviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 690, -1, -1));
 
@@ -161,7 +191,7 @@ int y =0;
         txtchat.setBorder(null);
         jScrollPane1.setViewportView(txtchat);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 460, 440));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 460, 360));
 
         jScrollPane2.setBorder(null);
 
@@ -171,19 +201,32 @@ int y =0;
         txtmensaje.setBorder(null);
         jScrollPane2.setViewportView(txtmensaje);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 570, 460, 140));
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 560, 460, 150));
+
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("CHAT");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 70, 40));
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("FACEPACK");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 220, 40));
 
         rSMaterialButtonRectangle3.setBackground(new java.awt.Color(255, 255, 255));
         rSMaterialButtonRectangle3.setText("rSMaterialButtonRectangle3");
-        jPanel2.add(rSMaterialButtonRectangle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 500, 480));
+        jPanel2.add(rSMaterialButtonRectangle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 500, 400));
 
         rSMaterialButtonRectangle4.setBackground(new java.awt.Color(255, 255, 255));
         rSMaterialButtonRectangle4.setText("rSMaterialButtonRectangle4");
-        jPanel2.add(rSMaterialButtonRectangle4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 550, 500, 180));
+        jPanel2.add(rSMaterialButtonRectangle4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 540, 500, 190));
 
         btncerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8_Cancel_35px_1.png"))); // NOI18N
         btncerrar.setBorderPainted(false);
         btncerrar.setContentAreaFilled(false);
+        btncerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btncerrar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8_Cancel_40px.png"))); // NOI18N
         btncerrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -195,6 +238,7 @@ int y =0;
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8_Scroll_Down_35px.png"))); // NOI18N
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8_Scroll_Down_40px.png"))); // NOI18N
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -202,6 +246,19 @@ int y =0;
             }
         });
         jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(449, 10, 50, 40));
+
+        btnip.setBackground(new java.awt.Color(255, 255, 255));
+        btnip.setForeground(new java.awt.Color(0, 102, 204));
+        jPanel2.add(btnip, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 210, 50));
+
+        fotonick.setColorBorde(new java.awt.Color(255, 255, 255));
+        fotonick.setColorButtonOptions(new java.awt.Color(255, 255, 255));
+        fotonick.setImagenDefault(null);
+        jPanel2.add(fotonick, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 75, 40, 40));
+
+        btnnick.setBackground(new java.awt.Color(255, 255, 255));
+        btnnick.setForeground(new java.awt.Color(0, 102, 204));
+        jPanel2.add(btnnick, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 210, 50));
 
         img2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondos/f4.jpg"))); // NOI18N
         img2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -247,6 +304,30 @@ int y =0;
         this.setLocation(this.getLocation().x + evt.getX() - x, this.getLocation().y + evt.getY() - y);
     }//GEN-LAST:event_img2MouseDragged
 
+    private void btnalexMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnalexMouseClicked
+        btnnick.setText("Alex de León");
+        fotonick.setImagenDefault(new javax.swing.ImageIcon(getClass().getResource("/fondos/alex.jpg")));
+        btnip.setText("IP: ");
+    }//GEN-LAST:event_btnalexMouseClicked
+
+    private void btnnahomiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnnahomiMouseClicked
+        btnnick.setText("Nahomi Torres");
+        fotonick.setImagenDefault(new javax.swing.ImageIcon(getClass().getResource("/fondos/nahomi.jpg")));
+        btnip.setText("IP: ");
+    }//GEN-LAST:event_btnnahomiMouseClicked
+
+    private void btnhectorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnhectorMouseClicked
+        btnnick.setText("Héctor Tello");
+        fotonick.setImagenDefault(new javax.swing.ImageIcon(getClass().getResource("/fondos/hector.jpg")));
+        btnip.setText("IP: ");
+    }//GEN-LAST:event_btnhectorMouseClicked
+
+    private void btnmynorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnmynorMouseClicked
+        btnnick.setText("Mynor Álvarez");
+        fotonick.setImagenDefault(new javax.swing.ImageIcon(getClass().getResource("/fondos/mynor.jpg")));
+        btnip.setText("IP: ");
+    }//GEN-LAST:event_btnmynorMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -283,12 +364,21 @@ int y =0;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private rojerusan.RSMaterialButtonRectangle btnalex;
     private javax.swing.JButton btncerrar;
     private rojerusan.RSMaterialButtonRectangle btnenviar;
+    private rojerusan.RSMaterialButtonRectangle btnhector;
+    private rojerusan.RSMaterialButtonRectangle btnip;
+    private rojerusan.RSMaterialButtonRectangle btnmynor;
+    private rojerusan.RSMaterialButtonRectangle btnnahomi;
+    private rojerusan.RSMaterialButtonRectangle btnnick;
+    private rojerusan.RSFotoCircle fotonick;
     private javax.swing.JLabel img;
     private javax.swing.JLabel img2;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -297,12 +387,8 @@ int y =0;
     private rojerusan.RSFotoCircle rSFotoCircle2;
     private rojerusan.RSFotoCircle rSFotoCircle3;
     private rojerusan.RSFotoCircle rSFotoCircle4;
-    private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle1;
-    private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle2;
     private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle3;
     private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle4;
-    private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle5;
-    private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle6;
     private javax.swing.JTextArea txtchat;
     private javax.swing.JTextArea txtmensaje;
     // End of variables declaration//GEN-END:variables
