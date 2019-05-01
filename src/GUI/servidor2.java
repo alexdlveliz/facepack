@@ -10,6 +10,7 @@ import java.awt.BorderLayout;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -65,6 +66,10 @@ class marcoServidor extends JFrame implements Runnable
 //                String mensaje_texto = flujo_entrada.readUTF();
 //                areatexto.append("\n"+mensaje_texto);
                 areatexto.append("\n" + nick + ":" + mensaje + " para "+ ip);
+                Socket socketenvio = new Socket(ip, 9090);
+                ObjectOutputStream paquete_envio = new ObjectOutputStream(socketenvio.getOutputStream());
+                paquete_envio.writeObject(paquete_recibido);
+                socketenvio.close();
                 misocket.close();
             }
         } catch (IOException | ClassNotFoundException ex) {

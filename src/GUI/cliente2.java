@@ -48,7 +48,7 @@ class MarcoCliente extends JFrame
     }		
 }
 
-class LaminaMarcoCliente extends JPanel
+class LaminaMarcoCliente extends JPanel implements Runnable
 {
     public LaminaMarcoCliente()
     {
@@ -66,7 +66,30 @@ class LaminaMarcoCliente extends JPanel
 	miboton=new JButton("Enviar");
         EnviaTexto event = new EnviaTexto();
         miboton.addActionListener(event);
-	add(miboton);	
+	add(miboton);
+        Thread mihilo = new Thread(this);
+        mihilo.start();
+    }
+
+    @Override
+    public void run() {
+        try{
+            ServerSocket socketservidor = new ServerSocket(9090);
+            Socket cliente;
+            paquete_de_envio paquete_recibido = new paquete_de_envio();
+            while(true)
+            {
+                cliente = socketservidor.accept();
+                ObjectInputStream flujo_entrada = new ObjectInputStream(cliente.getInputStream());
+                paquete_recibido = (paquete_de_envio) flujo_entrada.readObject();
+                campochat.append("\n" + paquete_recibido.getNick() + ": "
+                + paquete_recibido.getMensaje());
+            }
+        }catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+        
     }
     private class EnviaTexto implements ActionListener
     {
