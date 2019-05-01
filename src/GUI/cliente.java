@@ -189,6 +189,7 @@ int y =0;
         txtchat.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         txtchat.setRows(5);
         txtchat.setBorder(null);
+        txtchat.setEnabled(false);
         jScrollPane1.setViewportView(txtchat);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 460, 360));
