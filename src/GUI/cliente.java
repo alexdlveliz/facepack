@@ -352,7 +352,7 @@ int y =0;
     private void btnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnenviarActionPerformed
         try
         {
-            Socket misocket = new Socket("192.168.43.93", 9999);
+            Socket misocket = new Socket("192.168.43.94", 9999);
             paquete_de_envio datos = new paquete_de_envio();
             datos.setNick(btnnick.getText());
             datos.setIp(btnip.getText().substring(4));
