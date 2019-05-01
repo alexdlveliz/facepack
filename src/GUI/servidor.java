@@ -5,17 +5,44 @@
  */
 package GUI;
 
+import com.sun.awt.AWTUtilities;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.awt.image.RescaleOp;
+import java.io.File;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author alex
  */
 public class servidor extends javax.swing.JFrame {
-
+int x =0;
+int y = 0;
     /**
      * Creates new form servidor
      */
     public servidor() {
         initComponents();
+        AWTUtilities.setWindowOpaque(this,false); //hacemos el frame transparente
+        this.setLocationRelativeTo(null);  //centramos el frame
+        try
+        {
+            BufferedImage bim = ImageIO.read(new File(System.getProperty("user.dir") + "\\src\\fondos\\f4.jpg")); //creo un bufferimage con una imagen para el fondo
+            BufferedImage nbim = new BufferedImage (1001,1001, BufferedImage.TYPE_4BYTE_ABGR_PRE); //creo otro bufferimage y le doy medidas, x, y y le doy el efecto de color que quiero
+            Graphics2D createGraphics = nbim.createGraphics(); // creo una grafica a partir de la imagen
+            createGraphics.drawImage(bim, null, 0, 0); //la dibujo
+            float alp[] = new float[]{1f,0.65f,1f,0.65f}; // creo un vector con los valores para crear el efecto de transparencia
+            float def [] = new float[]{0,0,0,0}; 
+            RescaleOp r = new RescaleOp(alp, def, null);
+            BufferedImage filter = r.filter(nbim, null); //creo un bufferimage con mi filtro y le mando la imagen que cree antes
+            img.setIcon(new ImageIcon(filter)); 
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -27,21 +54,100 @@ public class servidor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtservidor = new javax.swing.JTextArea();
+        rSMaterialButtonRectangle1 = new rojerusan.RSMaterialButtonRectangle();
+        jButton1 = new javax.swing.JButton();
+        btncerrar = new javax.swing.JButton();
+        img = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setOpaque(false);
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("FACEPACK SERVIDOR");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 310, 40));
+
+        jScrollPane1.setBorder(null);
+
+        txtservidor.setColumns(20);
+        txtservidor.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        txtservidor.setRows(5);
+        txtservidor.setBorder(null);
+        jScrollPane1.setViewportView(txtservidor);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 460, 550));
+
+        rSMaterialButtonRectangle1.setBackground(new java.awt.Color(255, 255, 255));
+        rSMaterialButtonRectangle1.setText("rSMaterialButtonRectangle1");
+        jPanel1.add(rSMaterialButtonRectangle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 500, 610));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8_Scroll_Down_35px.png"))); // NOI18N
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8_Scroll_Down_40px.png"))); // NOI18N
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, 50, 40));
+
+        btncerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8_Cancel_35px_1.png"))); // NOI18N
+        btncerrar.setBorderPainted(false);
+        btncerrar.setContentAreaFilled(false);
+        btncerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btncerrar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8_Cancel_40px.png"))); // NOI18N
+        btncerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btncerrarMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btncerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 10, 40, 40));
+
+        img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondos/f4.jpg"))); // NOI18N
+        img.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                imgMouseDragged(evt);
+            }
+        });
+        img.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                imgMousePressed(evt);
+            }
+        });
+        jPanel1.add(img, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, 730));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, 720));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        this.setExtendedState(ICONIFIED); //funcion para minimizar
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void btncerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncerrarMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_btncerrarMouseClicked
+
+    private void imgMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgMousePressed
+          x = evt.getX();
+          y = evt.getY();
+    }//GEN-LAST:event_imgMousePressed
+
+    private void imgMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgMouseDragged
+        this.setLocation(this.getLocation().x + evt.getX() - x, this.getLocation().y + evt.getY() - y);
+    }//GEN-LAST:event_imgMouseDragged
 
     /**
      * @param args the command line arguments
@@ -79,5 +185,13 @@ public class servidor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btncerrar;
+    private javax.swing.JLabel img;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle1;
+    private javax.swing.JTextArea txtservidor;
     // End of variables declaration//GEN-END:variables
 }
