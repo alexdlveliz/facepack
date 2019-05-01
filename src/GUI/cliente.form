@@ -68,7 +68,7 @@
               <Color blue="99" green="0" red="99" type="rgb"/>
             </Property>
             <Property name="imagenDefault" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/fondos/alex.jpg"/>
+              <Image iconType="3" name="/fondos/nahomi.jpg"/>
             </Property>
           </Properties>
           <Constraints>
@@ -77,7 +77,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="rojerusan.RSMaterialButtonRectangle" name="btnalex">
+        <Component class="rojerusan.RSMaterialButtonRectangle" name="btnnahomi">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -85,10 +85,12 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="0" red="99" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Alex de Le&#xf3;n"/>
+            <Property name="text" type="java.lang.String" value="NAHOMI TORRES"/>
+            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="focusPainted" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnalexMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnnahomiMouseClicked"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -105,7 +107,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="imagenDefault" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/fondos/nahomi.jpg"/>
+              <Image iconType="3" name="/fondos/alex.jpg"/>
             </Property>
           </Properties>
           <Constraints>
@@ -114,7 +116,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="rojerusan.RSMaterialButtonRectangle" name="btnnahomi">
+        <Component class="rojerusan.RSMaterialButtonRectangle" name="btnalex">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -122,10 +124,11 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="0" red="99" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Nahomi Torres"/>
+            <Property name="text" type="java.lang.String" value="ALEX DE LE&#xd3;N"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnnahomiMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnalexMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnalexActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -366,7 +369,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="FACEPACK"/>
+            <Property name="text" type="java.lang.String" value="WHATSPACK"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

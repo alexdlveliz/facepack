@@ -72,9 +72,9 @@ int y =0;
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         rSFotoCircle1 = new rojerusan.RSFotoCircle();
-        btnalex = new rojerusan.RSMaterialButtonRectangle();
-        rSFotoCircle2 = new rojerusan.RSFotoCircle();
         btnnahomi = new rojerusan.RSMaterialButtonRectangle();
+        rSFotoCircle2 = new rojerusan.RSFotoCircle();
+        btnalex = new rojerusan.RSMaterialButtonRectangle();
         rSFotoCircle3 = new rojerusan.RSFotoCircle();
         btnhector = new rojerusan.RSMaterialButtonRectangle();
         rSFotoCircle4 = new rojerusan.RSFotoCircle();
@@ -113,33 +113,40 @@ int y =0;
 
         rSFotoCircle1.setColorBorde(new java.awt.Color(153, 0, 153));
         rSFotoCircle1.setColorButtonOptions(new java.awt.Color(153, 0, 153));
-        rSFotoCircle1.setImagenDefault(new javax.swing.ImageIcon(getClass().getResource("/fondos/alex.jpg"))); // NOI18N
+        rSFotoCircle1.setImagenDefault(new javax.swing.ImageIcon(getClass().getResource("/fondos/nahomi.jpg"))); // NOI18N
         jPanel1.add(rSFotoCircle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 203, 60, 60));
-
-        btnalex.setBackground(new java.awt.Color(255, 255, 255));
-        btnalex.setForeground(new java.awt.Color(153, 0, 153));
-        btnalex.setText("Alex de León");
-        btnalex.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnalexMouseClicked(evt);
-            }
-        });
-        jPanel1.add(btnalex, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 330, -1));
-
-        rSFotoCircle2.setColorBorde(new java.awt.Color(255, 255, 255));
-        rSFotoCircle2.setColorButtonOptions(new java.awt.Color(255, 255, 255));
-        rSFotoCircle2.setImagenDefault(new javax.swing.ImageIcon(getClass().getResource("/fondos/nahomi.jpg"))); // NOI18N
-        jPanel1.add(rSFotoCircle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 45, 60, 60));
 
         btnnahomi.setBackground(new java.awt.Color(255, 255, 255));
         btnnahomi.setForeground(new java.awt.Color(153, 0, 153));
-        btnnahomi.setText("Nahomi Torres");
+        btnnahomi.setText("NAHOMI TORRES");
+        btnnahomi.setEnabled(false);
+        btnnahomi.setFocusPainted(false);
         btnnahomi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnnahomiMouseClicked(evt);
             }
         });
-        jPanel1.add(btnnahomi, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 330, -1));
+        jPanel1.add(btnnahomi, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 330, -1));
+
+        rSFotoCircle2.setColorBorde(new java.awt.Color(255, 255, 255));
+        rSFotoCircle2.setColorButtonOptions(new java.awt.Color(255, 255, 255));
+        rSFotoCircle2.setImagenDefault(new javax.swing.ImageIcon(getClass().getResource("/fondos/alex.jpg"))); // NOI18N
+        jPanel1.add(rSFotoCircle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 45, 60, 60));
+
+        btnalex.setBackground(new java.awt.Color(255, 255, 255));
+        btnalex.setForeground(new java.awt.Color(153, 0, 153));
+        btnalex.setText("ALEX DE LEÓN");
+        btnalex.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnalexMouseClicked(evt);
+            }
+        });
+        btnalex.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnalexActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnalex, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 330, -1));
 
         rSFotoCircle3.setColorBorde(new java.awt.Color(153, 0, 153));
         rSFotoCircle3.setColorButtonOptions(new java.awt.Color(153, 0, 153));
@@ -233,7 +240,7 @@ int y =0;
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("FACEPACK");
+        jLabel2.setText("WHATSPACK");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 220, 40));
 
         rSMaterialButtonRectangle3.setBackground(new java.awt.Color(255, 255, 255));
@@ -325,28 +332,28 @@ int y =0;
         this.setLocation(this.getLocation().x + evt.getX() - x, this.getLocation().y + evt.getY() - y);
     }//GEN-LAST:event_img2MouseDragged
 
-    private void btnalexMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnalexMouseClicked
-        btnnick.setText("Alex de León");
-        fotonick.setImagenDefault(new javax.swing.ImageIcon(getClass().getResource("/fondos/alex.jpg")));
-        btnip.setText("IP: ");
-    }//GEN-LAST:event_btnalexMouseClicked
-
     private void btnnahomiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnnahomiMouseClicked
-        btnnick.setText("Nahomi Torres");
+        btnnick.setText("NAHOMI TORRES");
         fotonick.setImagenDefault(new javax.swing.ImageIcon(getClass().getResource("/fondos/nahomi.jpg")));
-        btnip.setText("IP: ");
+        btnip.setText("IP: 192.168.43.94");
     }//GEN-LAST:event_btnnahomiMouseClicked
+
+    private void btnalexMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnalexMouseClicked
+        btnnick.setText("ALEX DE LEÓN");
+        fotonick.setImagenDefault(new javax.swing.ImageIcon(getClass().getResource("/fondos/alex.jpg")));
+        btnip.setText("IP: 192.168.43.93");
+    }//GEN-LAST:event_btnalexMouseClicked
 
     private void btnhectorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnhectorMouseClicked
         btnnick.setText("Héctor Tello");
         fotonick.setImagenDefault(new javax.swing.ImageIcon(getClass().getResource("/fondos/hector.jpg")));
-        btnip.setText("IP: ");
+        btnip.setText("IP: 192.168.43.27");
     }//GEN-LAST:event_btnhectorMouseClicked
 
     private void btnmynorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnmynorMouseClicked
         btnnick.setText("Mynor Álvarez");
         fotonick.setImagenDefault(new javax.swing.ImageIcon(getClass().getResource("/fondos/mynor.jpg")));
-        btnip.setText("IP: ");
+        btnip.setText("IP: 192.168.43.242");
     }//GEN-LAST:event_btnmynorMouseClicked
 
     private void btnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnenviarActionPerformed
@@ -354,17 +361,23 @@ int y =0;
         {
             Socket misocket = new Socket("192.168.43.94", 9999);
             paquete_de_envio datos = new paquete_de_envio();
-            datos.setNick(btnnick.getText());
+            datos.setNick(btnalex.getText());
             datos.setIp(btnip.getText().substring(4));
             System.out.println(datos.getIp());
             datos.setMensaje(txtmensaje.getText());
             ObjectOutputStream flujo_salida = new ObjectOutputStream(misocket.getOutputStream());
             flujo_salida.writeObject(datos);
             misocket.close();
+            txtchat.append("\n" + "yo: " + txtmensaje.getText());
+            txtmensaje.setText("");
         } catch(IOException ex) {
             System.out.println(ex.getMessage());
         }
     }//GEN-LAST:event_btnenviarActionPerformed
+
+    private void btnalexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnalexActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnalexActionPerformed
 
     /**
      * @param args the command line arguments
