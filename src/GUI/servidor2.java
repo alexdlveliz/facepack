@@ -27,6 +27,7 @@ public class servidor2
     public static void main(String args[])
     {
         marcoServidor marco = new marcoServidor();
+        marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
 
@@ -49,7 +50,7 @@ class marcoServidor extends JFrame implements Runnable
     @Override
     public void run() {
         try {
-            ServerSocket  servidor = new ServerSocket(9999);
+            ServerSocket servidor = new ServerSocket(9999);
             String nick, ip, mensaje;
             paquete_de_envio paquete_recibido;
             while(true)
@@ -60,9 +61,9 @@ class marcoServidor extends JFrame implements Runnable
                 nick = paquete_recibido.getNick();
                 ip = paquete_recibido.getIp();
                 mensaje = paquete_recibido.getMensaje();
-                /*DataInputStream flujo_entrada = new DataInputStream(misocket.getInputStream());
-                String mensaje_texto = flujo_entrada.readUTF();
-                areatexto.append("\n"+mensaje_texto);*/
+//                DataInputStream flujo_entrada = new DataInputStream(misocket.getInputStream());
+//                String mensaje_texto = flujo_entrada.readUTF();
+//                areatexto.append("\n"+mensaje_texto);
                 areatexto.append("\n" + nick + ":" + mensaje + " para "+ ip);
                 misocket.close();
             }

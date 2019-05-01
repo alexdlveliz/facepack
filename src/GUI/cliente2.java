@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -51,8 +52,15 @@ class LaminaMarcoCliente extends JPanel
 {
     public LaminaMarcoCliente()
     {
-        JLabel texto=new JLabel("CLIENTE");
+        nick = new JTextField(5);
+        add(nick);
+        JLabel texto=new JLabel("-CHAT-");
 	add(texto);
+        ip = new JTextField(8);
+        add(ip);
+        campochat = new JTextArea(12,20);
+        campochat.setEnabled(false);
+        add(campochat);
 	campo1=new JTextField(20);
 	add(campo1);		
 	miboton=new JButton("Enviar");
@@ -68,15 +76,23 @@ class LaminaMarcoCliente extends JPanel
             try {
                 //System.out.println(campo1.getText());
                 Socket misocket = new Socket("192.168.1.10", 9999);
-                DataOutputStream flujo_salida = new DataOutputStream(misocket.getOutputStream());
+                paquete_de_envio datos = new paquete_de_envio();
+                datos.setIp(ip.getText());
+                datos.setNick(nick.getText());
+                datos.setMensaje(campo1.getText());
+                ObjectOutputStream flujo_salida = new ObjectOutputStream(misocket.getOutputStream());
+                flujo_salida.writeObject(datos);
+                /*DataOutputStream flujo_salida = new DataOutputStream(misocket.getOutputStream());
                 flujo_salida.writeUTF(campo1.getText());
-                flujo_salida.close();
+                flujo_salida.close();*/
+                misocket.close();
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
             }
         }
         
     }
-    private JTextField campo1;
+    private JTextField campo1, nick, ip;
+    private JTextArea campochat;
     private JButton miboton;
 }
