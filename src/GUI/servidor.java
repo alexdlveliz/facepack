@@ -5,11 +5,21 @@
  */
 package GUI;
 
+import clases.paquete_de_envio;
 import com.sun.awt.AWTUtilities;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.RescaleOp;
+import java.io.DataInputStream;
 import java.io.File;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
@@ -17,30 +27,31 @@ import javax.swing.ImageIcon;
  *
  * @author alex
  */
-public class servidor extends javax.swing.JFrame {
-int x =0;
-int y = 0;
+public class servidor extends javax.swing.JFrame implements Runnable {
+
+    int x = 0;
+    int y = 0;
+
     /**
      * Creates new form servidor
      */
     public servidor() {
         initComponents();
-        AWTUtilities.setWindowOpaque(this,false); //hacemos el frame transparente
+        AWTUtilities.setWindowOpaque(this, false); //hacemos el frame transparente
         this.setLocationRelativeTo(null);  //centramos el frame
-        try
-        {
+        try {
             BufferedImage bim = ImageIO.read(new File(System.getProperty("user.dir") + "\\src\\fondos\\f4.jpg")); //creo un bufferimage con una imagen para el fondo
-            BufferedImage nbim = new BufferedImage (1001,1001, BufferedImage.TYPE_4BYTE_ABGR_PRE); //creo otro bufferimage y le doy medidas, x, y y le doy el efecto de color que quiero
+            BufferedImage nbim = new BufferedImage(1001, 1001, BufferedImage.TYPE_4BYTE_ABGR_PRE); //creo otro bufferimage y le doy medidas, x, y y le doy el efecto de color que quiero
             Graphics2D createGraphics = nbim.createGraphics(); // creo una grafica a partir de la imagen
             createGraphics.drawImage(bim, null, 0, 0); //la dibujo
-            float alp[] = new float[]{1f,0.65f,1f,0.65f}; // creo un vector con los valores para crear el efecto de transparencia
-            float def [] = new float[]{0,0,0,0}; 
+            float alp[] = new float[]{1f, 0.65f, 1f, 0.65f}; // creo un vector con los valores para crear el efecto de transparencia
+            float def[] = new float[]{0, 0, 0, 0};
             RescaleOp r = new RescaleOp(alp, def, null);
             BufferedImage filter = r.filter(nbim, null); //creo un bufferimage con mi filtro y le mando la imagen que cree antes
-            img.setIcon(new ImageIcon(filter)); 
-        }
-        catch (Exception e)
-        {
+            img.setIcon(new ImageIcon(filter));
+            Thread miHilo = new Thread(this);
+            miHilo.start();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -141,8 +152,8 @@ int y = 0;
     }//GEN-LAST:event_btncerrarMouseClicked
 
     private void imgMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgMousePressed
-          x = evt.getX();
-          y = evt.getY();
+        x = evt.getX();
+        y = evt.getY();
     }//GEN-LAST:event_imgMousePressed
 
     private void imgMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgMouseDragged
@@ -194,4 +205,40 @@ int y = 0;
     private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle1;
     private javax.swing.JTextArea txtservidor;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void run() {
+        try {
+            ServerSocket servidor = new ServerSocket(9999);
+            String nick, ip, mensaje;
+            paquete_de_envio paquete_recibido;
+            while (true) {
+                Socket miSocket = servidor.accept();
+                //------------DETECTAR ONLINE----------
+                ObjectInputStream paquetes_datos = new ObjectInputStream(miSocket.getInputStream());
+                paquete_recibido = (paquete_de_envio) paquetes_datos.readObject();
+                if (paquete_recibido.getMensaje().equals("--Online--")) {
+                    InetAddress localizacion = miSocket.getInetAddress();
+                    String ip_remota = localizacion.getHostAddress();
+                    txtservidor.append("\nConectado: Nick: " + paquete_recibido.getNick() + " Con la IP: " + ip_remota);
+                } else {
+                    nick = paquete_recibido.getNick();
+                    ip = paquete_recibido.getIp();
+                    mensaje = paquete_recibido.getMensaje();
+                    txtservidor.append("\n" + nick + ": " + mensaje + " para " + ip);
+                    Socket destinatario = new Socket(ip, 9090);
+                    ObjectOutputStream paquetes_reenvio = new ObjectOutputStream(destinatario.getOutputStream());
+                    paquetes_reenvio.writeObject(paquete_recibido);
+                    destinatario.close();
+                    paquetes_reenvio.close();
+                    miSocket.close();
+                }
+
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(servidor.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(servidor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

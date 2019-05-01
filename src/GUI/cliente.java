@@ -5,50 +5,62 @@
  */
 package GUI;
 
+import clases.paquete_de_envio;
 import com.sun.awt.AWTUtilities;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.awt.image.RescaleOp;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author alex
  */
-public class cliente extends javax.swing.JFrame {
-int x =0;
-int y =0;
+public class cliente extends javax.swing.JFrame implements Runnable {
+
+    int x = 0;
+    int y = 0;
 //Image iconoalex = Toolkit.getDefaultToolkit().getImage(getClass().getResource("\\src\\fondos\\alex.jpg"));
+
     /**
      * Creates new form cliente
      */
     public cliente() {
         initComponents();
-        AWTUtilities.setWindowOpaque(this,false); //hacemos el frame transparente
+        AWTUtilities.setWindowOpaque(this, false); //hacemos el frame transparente
         this.setLocationRelativeTo(null);  //centramos el frame
-        try
-        {
+        try {
             BufferedImage bim = ImageIO.read(new File(System.getProperty("user.dir") + "\\src\\fondos\\f8.jpg")); //creo un bufferimage con una imagen para el fondo
-            BufferedImage nbim = new BufferedImage (1001,1001, BufferedImage.TYPE_4BYTE_ABGR_PRE); //creo otro bufferimage y le doy medidas, x, y y le doy el efecto de color que quiero
+            BufferedImage nbim = new BufferedImage(1001, 1001, BufferedImage.TYPE_4BYTE_ABGR_PRE); //creo otro bufferimage y le doy medidas, x, y y le doy el efecto de color que quiero
             Graphics2D createGraphics = nbim.createGraphics(); // creo una grafica a partir de la imagen
             createGraphics.drawImage(bim, null, 0, 0); //la dibujo
-            float alp[] = new float[]{1f,0.65f,1f,0.65f}; // creo un vector con los valores para crear el efecto de transparencia
-            float def [] = new float[]{0,0,0,0}; 
+            float alp[] = new float[]{1f, 0.65f, 1f, 0.65f}; // creo un vector con los valores para crear el efecto de transparencia
+            float def[] = new float[]{0, 0, 0, 0};
             RescaleOp r = new RescaleOp(alp, def, null);
             BufferedImage filter = r.filter(nbim, null); //creo un bufferimage con mi filtro y le mando la imagen que cree antes
-            img.setIcon(new ImageIcon(filter)); 
+            img.setIcon(new ImageIcon(filter));
             img2.setIcon(new ImageIcon(filter));
-        }
-        catch (Exception e)
-        {
+            new Thread(this).start();
+        } catch (Exception e) {
             e.printStackTrace();
         }
-      }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -90,6 +102,11 @@ int y =0;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setOpaque(false);
@@ -187,6 +204,11 @@ int y =0;
 
         btnenviar.setBackground(new java.awt.Color(153, 0, 153));
         btnenviar.setText("Enviar");
+        btnenviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnenviarActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnenviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 690, -1, -1));
 
         jScrollPane1.setBorder(null);
@@ -255,6 +277,11 @@ int y =0;
 
         btnip.setBackground(new java.awt.Color(255, 255, 255));
         btnip.setForeground(new java.awt.Color(153, 0, 153));
+        btnip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnipActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnip, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 210, 50));
 
         fotonick.setColorBorde(new java.awt.Color(255, 255, 255));
@@ -289,17 +316,17 @@ int y =0;
     }//GEN-LAST:event_btncerrarMouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-         this.setExtendedState(ICONIFIED); //funcion para minimizar
+        this.setExtendedState(ICONIFIED); //funcion para minimizar
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void img2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_img2MousePressed
-         x = evt.getX();
-          y = evt.getY();
+        x = evt.getX();
+        y = evt.getY();
     }//GEN-LAST:event_img2MousePressed
 
     private void imgMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgMousePressed
-          x = evt.getX();
-          y = evt.getY();
+        x = evt.getX();
+        y = evt.getY();
     }//GEN-LAST:event_imgMousePressed
 
     private void imgMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgMouseDragged
@@ -319,20 +346,58 @@ int y =0;
     private void btnnahomiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnnahomiMouseClicked
         btnnick.setText("Nahomi Torres");
         fotonick.setImagenDefault(new javax.swing.ImageIcon(getClass().getResource("/fondos/nahomi.jpg")));
-        btnip.setText("IP: ");
     }//GEN-LAST:event_btnnahomiMouseClicked
 
     private void btnhectorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnhectorMouseClicked
         btnnick.setText("Héctor Tello");
         fotonick.setImagenDefault(new javax.swing.ImageIcon(getClass().getResource("/fondos/hector.jpg")));
-        btnip.setText("IP: ");
     }//GEN-LAST:event_btnhectorMouseClicked
 
     private void btnmynorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnmynorMouseClicked
         btnnick.setText("Mynor Álvarez");
         fotonick.setImagenDefault(new javax.swing.ImageIcon(getClass().getResource("/fondos/mynor.jpg")));
-        btnip.setText("IP: ");
     }//GEN-LAST:event_btnmynorMouseClicked
+
+    private void btnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnenviarActionPerformed
+
+        try {
+            txtchat.append("\n" + txtmensaje.getText());
+            Socket miSocket = new Socket("192.168.43.93", 9999);
+            paquete_de_envio datos = new paquete_de_envio();
+            datos.setNick(btnnick.getText());
+            datos.setIp(btnip.getText());
+            datos.setMensaje(txtmensaje.getText());
+            ObjectOutputStream paquete_datos = new ObjectOutputStream(miSocket.getOutputStream());
+            paquete_datos.writeObject(datos);
+            txtmensaje.setText("");
+            paquete_datos.close();
+            miSocket.close();
+        } catch (IOException ex) {
+            Logger.getLogger(cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btnenviarActionPerformed
+
+    private void btnipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnipActionPerformed
+        String ip = JOptionPane.showInputDialog("Ingrese IP");
+        btnip.setText(ip);
+    }//GEN-LAST:event_btnipActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        try {
+            Socket miSocket = new Socket("192.168.1.9", 9999);
+            paquete_de_envio datos = new paquete_de_envio();
+            datos.setMensaje("--Online--");
+            datos.setNick(btnnahomi.getText());
+            ObjectOutputStream paquete = new ObjectOutputStream(miSocket.getOutputStream());
+            paquete.writeObject(datos);
+            paquete.close();
+            miSocket.close();
+        } catch (IOException ex) {
+            Logger.getLogger(cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -399,4 +464,24 @@ int y =0;
     private javax.swing.JTextArea txtchat;
     private javax.swing.JTextArea txtmensaje;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void run() {
+        try {
+            ServerSocket servidor_cliente = new ServerSocket(9090);
+            Socket cliente;
+            paquete_de_envio paquete_recibido;
+            while (true) {
+                cliente = servidor_cliente.accept();
+                ObjectInputStream flujo_entrada = new ObjectInputStream(cliente.getInputStream());
+                paquete_recibido = (paquete_de_envio) flujo_entrada.readObject();
+                txtchat.append("\n" + paquete_recibido.getNick() + ": " + paquete_recibido.getMensaje());
+
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(cliente.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
