@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import clases.paquete_de_envio;
 import com.sun.awt.AWTUtilities;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -12,6 +13,13 @@ import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.awt.image.RescaleOp;
 import java.io.File;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -20,14 +28,14 @@ import javax.swing.ImageIcon;
  *
  * @author alex
  */
-public class cliente extends javax.swing.JFrame {
+public class cliente extends javax.swing.JFrame implements Runnable{
 int x =0;
 int y =0;
 //Image iconoalex = Toolkit.getDefaultToolkit().getImage(getClass().getResource("\\src\\fondos\\alex.jpg"));
     /**
      * Creates new form cliente
      */
-    public cliente() {
+    public cliente(){
         initComponents();
         AWTUtilities.setWindowOpaque(this,false); //hacemos el frame transparente
         this.setLocationRelativeTo(null);  //centramos el frame
@@ -48,6 +56,8 @@ int y =0;
         {
             e.printStackTrace();
         }
+        Thread mihilo = new Thread(this);
+        mihilo.start();
       }
 
     /**
@@ -187,6 +197,11 @@ int y =0;
 
         btnenviar.setBackground(new java.awt.Color(153, 0, 153));
         btnenviar.setText("Enviar");
+        btnenviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnenviarActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnenviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 690, -1, -1));
 
         jScrollPane1.setBorder(null);
@@ -334,6 +349,23 @@ int y =0;
         btnip.setText("IP: ");
     }//GEN-LAST:event_btnmynorMouseClicked
 
+    private void btnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnenviarActionPerformed
+        try
+        {
+            Socket misocket = new Socket("192.168.43.93", 9999);
+            paquete_de_envio datos = new paquete_de_envio();
+            datos.setNick(btnnick.getText());
+            datos.setIp(btnip.getText().substring(4));
+            System.out.println(datos.getIp());
+            datos.setMensaje(txtmensaje.getText());
+            ObjectOutputStream flujo_salida = new ObjectOutputStream(misocket.getOutputStream());
+            flujo_salida.writeObject(datos);
+            misocket.close();
+        } catch(IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }//GEN-LAST:event_btnenviarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -399,4 +431,23 @@ int y =0;
     private javax.swing.JTextArea txtchat;
     private javax.swing.JTextArea txtmensaje;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void run() {
+        try {
+            ServerSocket socketservidor = new ServerSocket(9090);
+            Socket cliente;
+            paquete_de_envio paquete_recibido = new paquete_de_envio();
+            while(true)
+            {
+                cliente = socketservidor.accept();
+                ObjectInputStream flujo_entrada = new ObjectInputStream(cliente.getInputStream());
+                paquete_recibido = (paquete_de_envio) flujo_entrada.readObject();
+                txtchat.append("\n" + paquete_recibido.getNick() + ": "
+                + paquete_recibido.getMensaje());
+            }
+        } catch (IOException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }

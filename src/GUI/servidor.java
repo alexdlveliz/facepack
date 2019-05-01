@@ -5,11 +5,19 @@
  */
 package GUI;
 
+import clases.paquete_de_envio;
 import com.sun.awt.AWTUtilities;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.RescaleOp;
 import java.io.File;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
@@ -17,7 +25,7 @@ import javax.swing.ImageIcon;
  *
  * @author alex
  */
-public class servidor extends javax.swing.JFrame {
+public class servidor extends javax.swing.JFrame implements Runnable{
 int x =0;
 int y = 0;
     /**
@@ -43,6 +51,8 @@ int y = 0;
         {
             e.printStackTrace();
         }
+        Thread mihilo = new Thread(this);
+        mihilo.start();
     }
 
     /**
@@ -194,4 +204,31 @@ int y = 0;
     private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle1;
     private javax.swing.JTextArea txtservidor;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void run()
+    {
+    try {
+        ServerSocket servidor = new ServerSocket(9999);
+        String nick, ip, mensaje;
+        paquete_de_envio paquete_recibido;
+        while(true)
+        {
+            Socket misocket = servidor.accept();
+            ObjectInputStream paquete_datos = new ObjectInputStream(misocket.getInputStream());
+            paquete_recibido = (paquete_de_envio) paquete_datos.readObject();
+            nick = paquete_recibido.getNick();
+            ip = paquete_recibido.getIp();
+            mensaje = paquete_recibido.getMensaje();
+            txtservidor.append("\n" + nick + ": " + mensaje + " para " + ip);
+            Socket socketenvio = new Socket(ip, 9090);
+            ObjectOutputStream paquete_envio = new ObjectOutputStream(socketenvio.getOutputStream());
+            paquete_envio.writeObject(paquete_recibido);
+            socketenvio.close();
+            misocket.close();
+        }
+    } catch (IOException | ClassNotFoundException ex) {
+        System.out.println(ex.getMessage());
+    }
+    }
 }
